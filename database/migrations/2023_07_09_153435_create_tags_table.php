@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('name', 100);
             $table->timestamps();
         });
+        App\Models\Tag::create(['name' => 'has_ac']);
+        App\Models\Tag::create(['name' => 'has_private_bathroom']);
+        App\Models\Tag::create(['name' => 'has_coffee_machine']);
     }
 
     /**
