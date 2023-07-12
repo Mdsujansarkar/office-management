@@ -16,6 +16,19 @@ class Office extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $fillable = [
+        'user_id',
+        'title',
+        'description',
+        'lat',
+        'lng',
+        'address_line1',
+        'address_line2',
+        'approval_status',
+        'hidden',
+        'price_per_day',
+        'monthly_discount'
+    ];
     protected $casts = [
         'lat' => 'decimal',
         'lng' => 'decimal',

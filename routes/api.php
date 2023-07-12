@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\OfficeController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/tags', [TagController::class,'index']);
+Route::get('/offices', [OfficeController::class, 'index']);
