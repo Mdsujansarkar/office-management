@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Tag;
+use App\Enums\OfficeEnum;
 use App\Models\Reservation;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Office extends Model
 {
@@ -32,7 +35,7 @@ class Office extends Model
     protected $casts = [
         'lat' => 'decimal',
         'lng' => 'decimal',
-        'approval_status' => 'integer',
+        'approval_status' => OfficeEnum::class,
         'hidden' => 'boolean',
         'price_per_day' => 'integer',
         'monthly_discount' => 'integer'
@@ -48,5 +51,9 @@ class Office extends Model
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'resource');
+    }
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class, 'offices_tags');
     }
 }
